@@ -10,7 +10,12 @@ export function useTodosQuery({ initialData }: IUseTodosQuery) {
 		queryKey: ["todos", "getAllTodos"],
 		queryFn: () => getAllTodos(),
 		retry: 3,
-		staleTime: 1000 * 60 * 3, // 3 minutes
+		select: (data) => data?.filter((data) => data.id % 2 === 0),
+		// ✅ globally default to 20 seconds
+		staleTime: 1000 * 20,
 		initialData,
+		// placeholderData: [
+		// 	{ id: 0, title: "Loading...", completed: false, userId: 10 },
+		// ],
 	});
 }

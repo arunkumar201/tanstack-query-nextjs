@@ -16,9 +16,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos }) => {
 	if (error) return <p>Error: {error.message}</p>;
 	return (
 		<ul className="space-y-4">
-			{todos.map((todo) => (
-				<Todo key={todo.id} {...todo} />
-			))}
+			{data && data?.map((todo) => <Todo key={todo.id} {...todo} />)}
 		</ul>
 	);
 };
