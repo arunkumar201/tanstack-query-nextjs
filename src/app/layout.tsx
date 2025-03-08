@@ -3,7 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ReactQueryProvider } from "@/contexts/ReactQueryProvider";
 import NextTopLoader from "nextjs-toploader";
-
+import Script from "next/script";
+import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -18,6 +19,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
+			<Script src="https://unpkg.com/react-scan/dist/auto.global.js" />
 			<body className={inter.className}>
 				<ReactQueryProvider>
 					<NextTopLoader
@@ -36,6 +38,18 @@ export default function RootLayout({
 						showAtBottom={false}
 					/>
 					{children}
+					<Toaster
+						position="bottom-right"
+						toastOptions={{
+							className: "bg-white text-black shadow-lg rounded-md",
+						}}
+						containerStyle={{
+							top: 10,
+							right: 10,
+							bottom: 10,
+							left: 10,
+						}}
+					/>
 				</ReactQueryProvider>
 			</body>
 		</html>
