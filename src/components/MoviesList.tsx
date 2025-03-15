@@ -33,13 +33,13 @@ const MoviesList = () => {
 			{status === "error" && <p>Error: {error.message}</p>}
 			{status === "success" && (
 				<div>
-					{data.pages.map((movie, index) => {
+					{data.pages.map((movie:any, index) => {
 						return (
 							<div
 								key={index}
 								className="flex justify-center w-full flex-wrap gap-4 max-h-[100px] absolute mt-12"
 							>
-								{movie.map((movie, index) => {
+								{movie && movie.map((movie:any, index:any) => {
 									return (
 										<div key={index} className="">
 											<MoviesCart movie={movie} />
