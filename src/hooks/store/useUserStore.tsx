@@ -49,9 +49,9 @@ export const useUserStore = create<IUserStore & IUserActions>()(
 			subscribeWithSelector(immer(combine(initialUserState, userActions)))
 		),
 		{
-			name: "user-store",
+			name: "user-store",	
 			version: 1,
-			storage: createJSONStorage(() => localStorage),
+			storage: createJSONStorage(() => sessionStorage),
 			partialize: (state) => ({
 				users: state.users,
 			}),

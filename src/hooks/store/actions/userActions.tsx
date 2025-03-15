@@ -9,19 +9,16 @@ export const userActions: StateCreator<IUserStore, [], [], IUserActions> = (
 ) => ({
 	createUser: (user: IUserState) => {
 		set((state) => ({
-			...state,
 			users: [...state.users, user],
 		}));
 	},
 	updateUser: (user: Partial<IUserState>) => {
 		set((state) => ({
-			...state,
 			users: state.users.map((u) => (u.id === user.id ? { ...u, ...user } : u)),
 		}));
 	},
 	deleteUser: (id: string) => {
 		set((state) => ({
-			...state,
 			users: state.users.filter((u) => u.id !== id),
 		}));
 	},
