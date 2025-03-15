@@ -1,3 +1,5 @@
+const { createSecureHeaders } = require("next-secure-headers");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
@@ -9,6 +11,21 @@ const nextConfig = {
 	typescript: {
 		ignoreBuildErrors: true,
 	},
+
+	headers: createSecureHeaders({
+		forceHTTPSRedirect: [
+			true,
+			{ maxAge: 60 * 60 * 24 * 365, includeSubDomains: true, preload: true },
+		],
+		contentSecurityPolicy: {
+			reportOnly: true,
+		},
+		frameGuard: "sameorigin",
+		expectCT: [true, { maxAge: 60 * 60 * 24 * 365, enforce: true }],
+		referrerPolicy: "strict-origin-when-cross-origin",
+		xssProtection: "block-rendering",
+		nosniff: "nosniff",
+	}),
 };
 
-module.exports = nextConfig
+module.exports = nextConfig;
